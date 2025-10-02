@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT VIBEZ - Code Snippets</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+pre {
+  background-color: #1e293b; /* dark bg for code */
+  color: #f8fafc; 
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+.copy-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+</style>
+<script>
+function toggleSection(id) {
+    const sec = document.getElementById(id);
+    sec.classList.toggle('hidden');
+}
+
+function copyCode(id) {
+    const code = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(code);
+    alert("Code copied to clipboard!");
+}
+</script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+<header class="bg-gradient-to-r from-sky-500 to-navy-900 p-4 text-center">
+    <h1 class="text-3xl font-bold">Code Snippets</h1>
+    <p class="text-gray-300 mt-1">Frontend, Backend, and AI & ML sample code.</p>
+</header>
+
+<main class="p-6 space-y-4 max-h-screen overflow-y-auto">
+
+<!-- Frontend Snippets -->
+<div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-4 shadow-lg">
+    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('frontend')">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-laptop-code text-3xl"></i>
+            <h2 class="text-xl font-bold">Frontend Code (HTML, CSS, JS)</h2>
+        </div>
+        <div class="text-xl">▼</div>
+    </div>
+    <div id="frontend" class="mt-4 hidden space-y-4 overflow-auto max-h-96">
+        <h3 class="font-semibold">HTML Example</h3>
+        <pre id="html-snippet">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Sample&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello IT VIBEZ&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <button class="copy-btn" onclick="copyCode('html-snippet')"><i class="fas fa-copy"></i> Copy HTML</button>
+
+        <h3 class="font-semibold">CSS Example</h3>
+        <pre id="css-snippet">
+body {
+  background-color: #1e293b;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+h1 { color: #2563eb; }
+        </pre>
+        <button class="copy-btn" onclick="copyCode('css-snippet')"><i class="fas fa-copy"></i> Copy CSS</button>
+
+        <h3 class="font-semibold">JS Example</h3>
+        <pre id="js-snippet">
+document.querySelector('h1').addEventListener('click', () => {
+  alert('Hello IT VIBEZ!');
+});
+        </pre>
+        <button class="copy-btn" onclick="copyCode('js-snippet')"><i class="fas fa-copy"></i> Copy JS</button>
+    </div>
+</div>
+
+<!-- Backend Snippets -->
+<div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-4 shadow-lg">
+    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('backend')">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-server text-3xl"></i>
+            <h2 class="text-xl font-bold">Backend Code (Django Example)</h2>
+        </div>
+        <div class="text-xl">▼</div>
+    </div>
+    <div id="backend" class="mt-4 hidden overflow-auto max-h-96">
+        <pre id="django-snippet">
+# views.py
+from django.shortcuts import render
+def home(request):
+    return render(request, 'home.html', {'message': 'Hello IT VIBEZ!'})
+
+# urls.py
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('', views.home, name='home')
+]
+        </pre>
+        <button class="copy-btn" onclick="copyCode('django-snippet')"><i class="fas fa-copy"></i> Copy Django</button>
+    </div>
+</div>
+
+<!-- AI & ML Snippets -->
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl p-4 shadow-lg">
+    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('ai')">
+        <div class="flex items-center space-x-3">
+            <i class="fas fa-robot text-3xl"></i>
+            <h2 class="text-xl font-bold">AI & ML Code</h2>
+        </div>
+        <div class="text-xl">▼</div>
+    </div>
+    <div id="ai" class="mt-4 hidden overflow-auto max-h-96">
+        <pre id="ai-snippet">
+# Simple AI Example with Python
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+X = np.array([[1],[2],[3],[4]])
+y = np.array([2,4,6,8])
+
+model = LinearRegression()
+model.fit(X, y)
+print(model.predict([[5]]))  # Output: [10]
+        </pre>
+        <button class="copy-btn" onclick="copyCode('ai-snippet')"><i class="fas fa-copy"></i> Copy AI Code</button>
+    </div>
+</div>
+
+</main>
+
+<!-- Bottom Navigation -->
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT VIBEZ Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  /* Smooth horizontal scroll for cards */
+  .scroll-container {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+  }
+  .scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scroll-container::-webkit-scrollbar-thumb {
+    background-color: #1e40af;
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body class="bg-gradient-to-b from-[#0a0f29] to-[#1e3a8a] text-white flex flex-col min-h-screen">
+
+  <!-- Banner -->
+  <div class="h-[50vh] w-full relative">
+    <img src="Vibez.png" alt="Dashboard Banner" class="object-cover w-full h-full">
+    <div class="absolute inset-0 bg-black/30"></div>
+  </div>
+
+  <!-- Scrollable Cards Container -->
+  <div class="flex-1 overflow-hidden p-4">
+    <div class="scroll-container">
+
+      <!-- Notes Card -->
+      <div class="min-w-[250px] bg-white/10 backdrop-blur-lg rounded-2xl flex flex-col p-6 shadow-md hover:scale-105 transition">
+        <i class="fa-solid fa-book text-4xl text-sky-400 mb-3"></i>
+        <h2 class="text-lg font-semibold mb-2">Notes</h2>
+        <p class="text-gray-300 mb-3">Access all topics and download PDFs for offline study.</p>
+        <a href="notes.html" class="mt-auto bg-sky-400 text-black px-4 py-2 rounded hover:bg-sky-500 text-center">View Notes</a>
+      </div>
+
+      <!-- Code Snippets Card -->
+      <div class="min-w-[250px] bg-white/10 backdrop-blur-lg rounded-2xl flex flex-col p-6 shadow-md hover:scale-105 transition">
+        <i class="fa-solid fa-code text-4xl text-green-400 mb-3"></i>
+        <h2 class="text-lg font-semibold mb-2">Code Snippets</h2>
+        <p class="text-gray-300 mb-3">HTML, CSS, JS examples to practice and build projects.</p>
+        <a href="snippet.html" class="mt-auto bg-green-400 text-black px-4 py-2 rounded hover:bg-green-500 text-center">View Snippets</a>
+      </div>
+
+      <!-- Lessons Card -->
+      <div class="min-w-[250px] bg-white/10 backdrop-blur-lg rounded-2xl flex flex-col p-6 shadow-md hover:scale-105 transition">
+        <i class="fa-solid fa-chalkboard-teacher text-4xl text-yellow-400 mb-3"></i>
+        <h2 class="text-lg font-semibold mb-2">Lessons</h2>
+        <p class="text-gray-300 mb-3">Watch topic-based video lessons and learn by doing.</p>
+        <a href="lessons.html" class="mt-auto bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 text-center">View Lessons</a>
+      </div>
+
+      <!-- Catch Up Card -->
+      <div class="min-w-[250px] bg-white/10 backdrop-blur-lg flex flex-col p-6 rounded-2xl shadow-md hover:scale-105 transition">
+        <i class="fa-solid fa-play-circle text-4xl text-pink-400 mb-3"></i>
+        <h2 class="text-lg font-semibold mb-2">Catch Up</h2>
+        <p class="text-gray-300 mb-3">Access previous lessons anytime and stay on track.</p>
+        <a href="catch.html" class="mt-auto bg-pink-400 text-black px-4 py-2 rounded hover:bg-pink-500 text-center">View Catch Up</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="fixed bottom-0 left-0 w-full bg-[#0a0f29] border-t border-gray-700 flex justify-around items-center py-3">
+    <a href="dashboard.html" class="flex flex-col items-center text-sky-400">
+      <i class="fa-solid fa-house text-xl"></i>
+      <span class="text-xs">Dashboard</span>
+    </a>
+    <a href="live .html" class="flex flex-col items-center text-gray-400 hover:text-sky-400">
+      <i class="fa-solid fa-video text-xl"></i>
+      <span class="text-xs">Live</span>
+    </a>
+    <a href="feedback.html" class="flex flex-col items-center text-gray-400 hover:text-sky-400">
+      <i class="fa-solid fa-comment-dots text-xl"></i>
+      <span class="text-xs">Feedback</span>
+    </a>
+  </nav>
+
+</body>
+</html>

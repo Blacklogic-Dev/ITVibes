@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT VIBEZ - Catch Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="max-w-6xl mx-auto py-6 px-4 space-y-6">
+
+    <!-- Module 1 - Frontend -->
+    <div class="bg-white rounded-xl shadow-md p-4">
+      <button class="w-full flex justify-between items-center text-left text-xl font-semibold" onclick="toggleModule('module1')">
+        Module 1: Coding Fundamentals <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="module1" class="mt-4 hidden space-y-4">
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+          <div class="bg-blue-600 h-4 rounded-full" style="width: 0%;" id="progress1"></div>
+        </div>
+        <div class="space-y-4">
+          <p class="font-semibold">HTML & CSS Basics</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/pQN-pnXPaVg" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">JavaScript Basics</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/W6NZfCO5SIk" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">Git & GitHub Collaboration</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/RGOj5yH7evk" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2 - Backend -->
+    <div class="bg-white rounded-xl shadow-md p-4">
+      <button class="w-full flex justify-between items-center text-left text-xl font-semibold" onclick="toggleModule('module2')">
+        Module 2: Logic & Programming <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="module2" class="mt-4 hidden space-y-4">
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+          <div class="bg-green-600 h-4 rounded-full" style="width: 0%;" id="progress2"></div>
+        </div>
+        <div class="space-y-4">
+          <p class="font-semibold">Python Basics</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/_uQrJ0TkZlc" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">Loops, Variables & Conditions</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/HGOBQPFzWKo" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">Backend with Django</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/F5mRW0jo-U4" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3 - AI & ML -->
+    <div class="bg-white rounded-xl shadow-md p-4">
+      <button class="w-full flex justify-between items-center text-left text-xl font-semibold" onclick="toggleModule('module3')">
+        Module 3: Artificial Intelligence & Machine Learning <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div id="module3" class="mt-4 hidden space-y-4 max-h-[70vh] overflow-y-auto">
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+          <div class="bg-purple-600 h-4 rounded-full" style="width: 0%;" id="progress3"></div>
+        </div>
+        <div class="space-y-4">
+          <p class="font-semibold">What is AI?</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/JMUxmLyrhSk" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">Machine Learning Basics</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/Gv9_4yMHFhI" frameborder="0" allowfullscreen></iframe>
+
+          <p class="font-semibold">AI Applications</p>
+          <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/2ePf9rue1Ao" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleModule(moduleId) {
+      const module = document.getElementById(moduleId);
+      module.classList.toggle('hidden');
+    }
+
+    // Example progress simulation
+    document.getElementById('progress1').style.width = '50%';
+    document.getElementById('progress2').style.width = '30%';
+    document.getElementById('progress3').style.width = '0%';
+  </script>
+
+</body>
+</html>

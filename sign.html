@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Vibes Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .card-container {
+      perspective: 1000px;
+    }
+    .card {
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+    .card.flipped {
+      transform: rotateY(180deg);
+    }
+    .card-face {
+      position: absolute;
+      width: 100%;
+      backface-visibility: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-blue-900 flex items-center justify-center min-h-screen">
+
+  <div class="card-container w-full max-w-md">
+    <div id="card" class="card relative">
+
+      <!-- Registration Page -->
+      <div class="card-face bg-white rounded-xl shadow-lg p-6 space-y-4">
+        <div class="flex justify-center">
+          <img src="it.png" alt="Logo" class="w-20 h-20">
+        </div>
+        <h2 class="text-2xl font-bold text-center text-blue-900">Student Registration</h2>
+
+        <input id="name" type="text" placeholder="First Name" class="w-full p-2 border rounded">
+        <input id="surname" type="text" placeholder="Surname" class="w-full p-2 border rounded">
+        <input id="idnum" type="text" placeholder="ID Number" class="w-full p-2 border rounded">
+        <input id="dob" type="date" class="w-full p-2 border rounded">
+        <input id="email" type="email" placeholder="Email Address" class="w-full p-2 border rounded">
+
+        <button onclick="registerStudent()" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">Register</button>
+      </div>
+
+      <!-- Receipt Page -->
+      <div id="receipt" class="card-face bg-white rounded-xl shadow-lg p-6 space-y-4 hidden">
+        <div class="flex justify-center">
+          <img src="it.png" alt="Logo" class="w-16 h-16">
+        </div>
+        <h2 class="text-xl font-bold text-blue-900">Registration Successful 🎉</h2>
+        <p id="receiptName" class="text-gray-800"></p>
+        <p id="receiptStudentNum" class="text-gray-800 font-bold"></p>
+        <p class="text-green-600">Please share this receipt with your agent to confirm registration.</p>
+
+        <button onclick="shareToWhatsApp()" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
+          Share to Agent
+        </button>
+        <button onclick="goToLogin()" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">
+          Continue to Login
+        </button>
+      </div>
+
+      <!-- Login Page -->
+      <div class="card-face card-back bg-white rounded-xl shadow-lg p-6 space-y-4">
+        <div class="flex justify-center">
+          <img src="it.png" alt="Logo" class="w-20 h-20">
+        </div>
+        <h2 class="text-2xl font-bold text-center text-blue-900">Student Login</h2>
+
+        <input id="loginStudentNum" type="text" placeholder="Student Number" class="w-full p-2 border rounded">
+        <input id="loginPassword" type="text" placeholder="Password" class="w-full p-2 border rounded">
+
+        <button onclick="login()" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">Login</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let generatedStudentNum = "";
+    let generatedPassword = "";
+
+    function registerStudent() {
+      const name = document.getElementById('name').value;
+      const surname = document.getElementById('surname').value;
+
+      // Generate Student Number
+      generatedStudentNum = "250407" + Math.floor(1000 + Math.random() * 9000);
+      // Generate Password
+      generatedPassword = Math.random().toString(36).slice(-8);
+
+      // Show receipt
+      document.getElementById('receiptName').innerText = `Name: ${name} ${surname}`;
+      document.getElementById('receiptStudentNum').innerText = `Student Number: ${generatedStudentNum}`;
+      document.querySelector('.card-face').classList.add("hidden");
+      document.getElementById('receipt').classList.remove("hidden");
+    }
+
+    function shareToWhatsApp() {
+      const msg = `Registration Receipt:%0AStudent Number: ${generatedStudentNum}`;
+      window.open(`https://wa.me/27606614909?text=${msg}`, '_blank');
+    }
+
+    function goToLogin() {
+      document.getElementById('card').classList.add('flipped');
+      document.getElementById('loginStudentNum').value = generatedStudentNum;
+      document.getElementById('loginPassword').value = generatedPassword;
+    }
+
+    function login() {
+      // Redirect to dashboard
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
