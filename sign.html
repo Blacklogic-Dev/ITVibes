@@ -46,6 +46,12 @@
         <input id="email" type="email" placeholder="Email Address" class="w-full p-2 border rounded">
 
         <button onclick="registerStudent()" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">Register</button>
+
+        <!-- Already Registered -->
+        <p class="text-center text-gray-600 mt-4">Already registered?</p>
+        <button onclick="goToLogin()" class="w-full bg-gray-200 text-blue-900 py-2 rounded hover:bg-gray-300">
+          Login
+        </button>
       </div>
 
       <!-- Receipt Page -->
@@ -77,6 +83,11 @@
         <input id="loginPassword" type="text" placeholder="Password" class="w-full p-2 border rounded">
 
         <button onclick="login()" class="w-full bg-blue-900 text-white py-2 rounded hover:bg-blue-700">Login</button>
+
+        <!-- Back to Register -->
+        <button onclick="goToRegister()" class="w-full bg-gray-200 text-blue-900 py-2 rounded hover:bg-gray-300 mt-2">
+          Back to Register
+        </button>
       </div>
 
     </div>
@@ -111,6 +122,10 @@
       document.getElementById('card').classList.add('flipped');
       document.getElementById('loginStudentNum').value = generatedStudentNum;
       document.getElementById('loginPassword').value = generatedPassword;
+    }
+
+    function goToRegister() {
+      document.getElementById('card').classList.remove('flipped');
     }
 
     function login() {
