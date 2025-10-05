@@ -6,23 +6,47 @@
   <title>IT VIBEZ Live Class</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Glowing animation for countdown */
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 30px #0077ff;
+        color: #ffffff;
+      }
+      50% {
+        text-shadow: 0 0 20px #00eaff, 0 0 40px #00bfff, 0 0 60px #0077ff;
+        color: #aee8ff;
+      }
+    }
+    .glow-text {
+      animation: glow 1.8s ease-in-out infinite;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-b from-sky-500 via-blue-900 to-navy-900 text-white">
 
-  <!-- Container -->
   <div class="flex flex-col min-h-screen">
 
     <!-- YouTube Video -->
-    <div class="w-full h-[50vh] bg-black flex justify-center items-center">
-      <iframe class="w-full h-full" src="https://www.youtube.com/embed/pQN-pnXPaVg?autoplay=0" 
-              title="Live Coding Video" frameborder="0" allowfullscreen></iframe>
+    <div id="videoContainer" class="w-full h-[50vh] bg-black flex justify-center items-center">
+      <iframe id="ytVideo" class="w-full h-full" 
+        src="https://www.youtube.com/embed/Sf5srKA1fQA?si=4fhk5qmZwtr0bhOY&enablejsapi=1" 
+        title="Live Coding Video" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <!-- Live Transcript -->
+    <!-- Countdown Timer (hidden initially) -->
+    <div id="countdownContainer" class="hidden flex flex-col justify-center items-center text-center h-[50vh]">
+      <h1 class="text-3xl font-bold mb-4 glow-text">Countdown to Live Class</h1>
+      <div id="countdown" class="text-5xl font-mono glow-text font-semibold"></div>
+      <p class="text-lg mt-4 text-gray-300 animate-pulse">
+        Get ready to learn, build, and inspire at <span class="font-semibold text-white">IT VIBEZ</span>.
+      </p>
+    </div>
+
+    <!-- Transcript + Comments -->
     <div class="bg-gray-900 p-4 flex-1 overflow-y-auto">
       <h2 class="text-xl font-bold mb-2">Live Transcript</h2>
       <div id="transcript" class="space-y-2">
-        <!-- Placeholder text for demo -->
         <p>[00:00] Welcome to IT VIBEZ live coding session!</p>
         <p>[00:05] Today we'll learn HTML, CSS, and JS basics.</p>
         <p>[00:10] Make sure to follow along and take notes.</p>
@@ -38,9 +62,7 @@
       </div>
       <div>
         <h3 class="text-lg font-semibold mb-2">Comments</h3>
-        <div id="comments" class="space-y-2 max-h-48 overflow-y-auto mb-2">
-          <!-- Comments will appear here -->
-        </div>
+        <div id="comments" class="space-y-2 max-h-48 overflow-y-auto mb-2"></div>
         <div class="flex space-x-2">
           <input id="commentInput" type="text" placeholder="Write a comment..." 
                  class="flex-1 p-2 rounded-lg text-black">
@@ -48,36 +70,66 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
-    // Like Button Logic
+    // Load YouTube API
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('ytVideo', {
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // When video ends, show countdown
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        document.getElementById('videoContainer').classList.add('hidden');
+        document.getElementById('countdownContainer').classList.remove('hidden');
+      }
+    }
+
+    // Countdown logic (27 hours 18 minutes)
+    const countdownDisplay = document.getElementById('countdown');
+    let countdownTime = 27 * 3600 + 18 * 60; // total seconds
+
+    setInterval(() => {
+      if (countdownTime > 0) {
+        countdownTime--;
+        const hours = Math.floor(countdownTime / 3600);
+        const minutes = Math.floor((countdownTime % 3600) / 60);
+        const seconds = countdownTime % 60;
+        countdownDisplay.textContent = `${hours}h ${minutes}m ${seconds}s`;
+      } else {
+        countdownDisplay.textContent = "Live Class is starting now!";
+      }
+    }, 1000);
+
+    // Like button logic
     let likes = 0;
-    const likeBtn = document.getElementById('likeBtn');
-    const likeCount = document.getElementById('likeCount');
-    likeBtn.addEventListener('click', () => {
+    document.getElementById('likeBtn').addEventListener('click', () => {
       likes++;
-      likeCount.textContent = likes;
+      document.getElementById('likeCount').textContent = likes;
     });
 
-    // Comment Logic
+    // Comments logic
     const commentBtn = document.getElementById('commentBtn');
     const commentInput = document.getElementById('commentInput');
     const comments = document.getElementById('comments');
-
     commentBtn.addEventListener('click', () => {
-      if(commentInput.value.trim() !== "") {
+      if (commentInput.value.trim() !== "") {
         const comment = document.createElement('p');
         comment.textContent = commentInput.value;
         comment.className = "bg-gray-700 p-2 rounded-lg";
         comments.appendChild(comment);
         commentInput.value = "";
-        comments.scrollTop = comments.scrollHeight; // auto scroll to latest comment
+        comments.scrollTop = comments.scrollHeight;
       }
     });
 
-    // Simulated Transcript Update (demo)
+    // Transcript simulation
     const transcript = document.getElementById('transcript');
     const lines = [
       "[00:15] Let's start by creating our HTML structure...",
@@ -87,15 +139,16 @@
     ];
     let i = 0;
     setInterval(() => {
-      if(i < lines.length) {
+      if (i < lines.length) {
         const p = document.createElement('p');
         p.textContent = lines[i];
         transcript.appendChild(p);
-        transcript.scrollTop = transcript.scrollHeight; // auto scroll
+        transcript.scrollTop = transcript.scrollHeight;
         i++;
       }
-    }, 5000); // every 5 seconds
+    }, 5000);
   </script>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
